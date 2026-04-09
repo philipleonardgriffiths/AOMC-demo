@@ -36,14 +36,40 @@ function applyVendorOverrides(steps: Step[]): Step[] {
   return steps.map(step => {
     // --- Scenario 2 title: note which vendor + coverage ---
     if (step.id === 's2-title') {
-      const coverageNote = coveredCount < 6
-        ? `${vc.name} demonstrates ${coveredCount} of 6 controls.`
-        : `${vc.name} demonstrates all 6 controls.`;
-      return {
+      const coverageNote = `${vc.name} demonstrates 4 core AOMC controls: identity, zero-trust enforcement, tool authorization, and autonomy governance.`
+      
+        return {
         ...step,
-        subtitle: `Same enterprise. Same attack. Same rogue agent.\n${coverageNote}\nFirst — show the violation. Then — enable the defense.`,
+        subtitle: `Same enterprise. Same attack. Same rogue agent.\n${coverageNote}\nFirst — show the reference attack attempt. Then — show how ${vc.name} blocks it before meaningful reachability exists.`,
       };
     }
+    
+    // --- Framework Traceability slide: make NetFoundry's 4-control focus explicit ---
+if (step.id === 'framework-map') {
+  return {
+    ...step,
+    subtitle:
+      `NetFoundry demonstrates 4 core AOMC controls and complements the broader 6-control reference framework.\n\n` +
+      `NetFoundry-led controls:\n` +
+      `1. Identity Attestation → NIST IA-9 · MAESTRO L1 — Identity & Zero Trust\n` +
+      `4. Zero-Trust Enforcement → NIST AC-4 · MAESTRO L2 — Cross-Domain Trust\n` +
+      `5. Tool Authorization → NIST AC-6 · MAESTRO L5 — Access Control\n` +
+      `6. Autonomy Governance → NIST AU-6 · MAESTRO L6 — Governance & Audit\n\n` +
+      `Broader AOMC reference controls:\n` +
+      `2. Runtime Monitoring → NIST SI-4 · MAESTRO L4 — Rogue Agent Detection\n` +
+      `3. Data Guardrails → NIST SC-28 · MAESTRO L3 — Data Exfil Prevention\n\n` +
+      `Mapped to NIST SP 800-53 AI Overlay + OWASP MAESTRO framework.`,
+  };
+}
+
+// --- Scenario 2 audit summary: do not imply NetFoundry owns all 6 equally ---
+if (step.id === 's2-audit') {
+  return {
+    ...step,
+    title: 'PROTECTED OUTCOME — FOUR CORE NETFOUNDRY CONTROLS ACTIVE',
+    subtitle: 'Complete tamper-evident audit trail generated',
+  };
+}
 
     // --- Finale slide: vendor branding ---
     if (step.id === 'finale' && vc.finaleSubtitle) {
