@@ -6,7 +6,7 @@ import { VendorConfig } from './types';
 
 const _netfoundryConfig: VendorConfig = {
   name: 'NetFoundry',
-  tagline: 'Eliminate the Connectivity Tax with Identity-First Connectivity',
+  tagline: 'Eliminate the Connectivity Tax with Identity-First Reachability',
   website: 'https://netfoundry.io/netfoundry-ai/',
   logoUrl: '/netfoundry-logo.png', // place in web-demo/public/
   accentColor: '#173F8A',
@@ -25,24 +25,32 @@ const _netfoundryConfig: VendorConfig = {
     },
 
     runtime_monitoring: {
-      productName: 'AOMC Reference Control',
+      productName: 'NetFoundry zLAN',
       introSubtitle:
-        'Runtime monitoring is shown here as part of the broader AOMC reference flow.',
-      blockedSubtitle:
-        'Rogue behavior detected and quarantined before meaningful access',
+        'Runtime monitoring and runtime containment via default-deny sandbox networking.\nzLAN enforces approved local and overlay paths, provides accepted/denied traffic visibility, and can surface failed non-Ziti access attempts to protected resources.',
+      enableTitle:
+        'NetFoundry ENABLED: Runtime Monitoring',
+     blockedSubtitle:
+        'zLAN enforced default-deny runtime containment — unauthorized traffic denied, restricted to approved local and overlay paths, and surfaced through centralized visibility',
       blockedEvents: [
-        'AOMC Reference: Anomaly score exceeded threshold — agent quarantined before data access',
+        'NetFoundry zLAN: Unauthorized runtime traffic denied by centralized sandbox policy',
+        'NetFoundry zLAN: Accepted and denied flows exposed in the centralized policy console',
+        'NetFoundry zLAN: Non-Ziti services or processes attempting protected access surfaced for alerting and analysis'
       ],
     },
 
     data_guardrails: {
-      productName: 'AOMC Reference Control',
+      productName: 'NetFoundry',
       introSubtitle:
-        'Data guardrails are shown here as part of the broader AOMC reference flow.',
+        'Data Guardrails are augmented by default-deny reachability.\nNetFoundry does not replace DLP or prompt inspection; it reduces where those controls are needed by denying arbitrary data paths by default.',
+      enableTitle:
+        'NetFoundry AUGMENTS: Data Guardrails',
       blockedSubtitle:
-        'Sensitive data access blocked before exfiltration',
+        'Arbitrary data path denied — sensitive data can move only through approved, observable, and governable flows that require inspection or policy control',
       blockedEvents: [
-        'AOMC Reference: PII access denied — zero records exfiltrated',
+        'NetFoundry: Unauthorized data path denied by default — rogue agent has no arbitrary route to customer_database',
+        'NetFoundry: Sensitive data flow requires an approved identity-bound path to gateway, API, data service, or inspection service',
+        'NetFoundry: DLP, prompt inspection, output scanning, and data-governance controls can be focused on approved flows that require deeper intelligence',
       ],
     },
 

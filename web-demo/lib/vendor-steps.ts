@@ -36,7 +36,7 @@ function applyVendorOverrides(steps: Step[]): Step[] {
   return steps.map(step => {
     // --- Scenario 2 title: note which vendor + coverage ---
     if (step.id === 's2-title') {
-      const coverageNote = `${vc.name} demonstrates 4 core AOMC controls: identity, zero-trust enforcement, tool authorization, and autonomy governance.`
+      const coverageNote = `${vc.name} demonstrates 5 core AOMC controls, plus augmented/enabling support for Data Guardrails: arbitrary data paths are denied by default, while DLP and deeper inspection focus on approved flows.`
       
         return {
         ...step,
@@ -44,30 +44,30 @@ function applyVendorOverrides(steps: Step[]): Step[] {
       };
     }
     
-    // --- Framework Traceability slide: make NetFoundry's 4-control focus explicit ---
+    // --- Framework Traceability slide: make NetFoundry's 5 core controls + augmented Data Guardrails posture explicit ---
 if (step.id === 'framework-map') {
   return {
     ...step,
     subtitle:
-      `NetFoundry demonstrates 4 core AOMC controls and complements the broader 6-control reference framework.\n\n` +
+      `NetFoundry demonstrates 5 core AOMC controls directly, plus augmented/enabling support for Data Guardrails.\n\n` +
       `NetFoundry-led controls:\n` +
       `1. Identity Attestation → NIST IA-9 · MAESTRO L1 — Identity & Zero Trust\n` +
+      `2. Runtime Monitoring → NIST SI-4 · MAESTRO L4 — Rogue Agent Detection\n` +
       `4. Zero-Trust Enforcement → NIST AC-4 · MAESTRO L2 — Cross-Domain Trust\n` +
       `5. Tool Authorization → NIST AC-6 · MAESTRO L5 — Access Control\n` +
       `6. Autonomy Governance → NIST AU-6 · MAESTRO L6 — Governance & Audit\n\n` +
-      `Broader AOMC reference controls:\n` +
-      `2. Runtime Monitoring → NIST SI-4 · MAESTRO L4 — Rogue Agent Detection\n` +
+      `Augmented / enabling control:\n` +
       `3. Data Guardrails → NIST SC-28 · MAESTRO L3 — Data Exfil Prevention\n\n` +
       `Mapped to NIST SP 800-53 AI Overlay + OWASP MAESTRO framework.`,
   };
 }
 
-// --- Scenario 2 audit summary: do not imply NetFoundry owns all 6 equally ---
+// --- Scenario 2 audit summary: show 5 core controls plus augmented/enabling Data Guardrails ---
 if (step.id === 's2-audit') {
   return {
     ...step,
-    title: 'PROTECTED OUTCOME — FOUR CORE NETFOUNDRY CONTROLS ACTIVE',
-    subtitle: 'Complete tamper-evident audit trail generated',
+    title: 'PROTECTED OUTCOME — FIVE CORE NETFOUNDRY CONTROLS ACTIVE + AUGMENTED DATA GUARDRAILS',
+    subtitle: 'Complete tamper-evident audit trail generated — arbitrary data paths denied, approved flows observable and governable',
   };
 }
 
